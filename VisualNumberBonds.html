@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="lib/style.css" />
+    <style>
+      body {
+        font-family: monospace;
+      }
+
+      #mainTitle {
+        text-align: center;
+      }
+
+      .nbBox {
+        height: 80px;
+        width: 9%;
+        border: solid 1px black;
+        text-align: center;
+        line-height: 80px;
+        font-size: 1.4rem;
+      }
+
+      .boxContainer {
+        width: 100%;
+        margin: 0 auto 0 auto;
+        display: flex;
+        justify-content: center;
+      }
+
+      #randomNumberDiv {
+        display:inline-block;
+        min-width: 30px;
+        min-height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        background-color: orange;
+        margin: 0 auto 0 auto;
+        font-size: 1.4rem;
+        text-align: center;
+        padding:5px;
+      }
+
+      #answerDiv {
+        display:inline-block;
+        min-width: 30px;
+        min-height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        background-color: #71e816;
+        margin: 0 auto 0 auto;
+        font-size: 1.4rem;
+        text-align: center;
+         padding:5px;
+      }
+
+      .symbolDiv {
+        display:inline-block;
+        min-width: 30px;
+        min-height: 30px;
+        line-height: 55px;
+        border-radius: 50%;
+        margin: 0 auto 0 auto;
+        font-size: 30px;
+        text-align: center;
+      }
+
+        #tenDiv {
+        display:inline-block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border: solid 1px black;
+        border-radius: 50%;
+        background-color: light-blue;
+        margin: 0 auto 0 auto;
+        font-size: 1.4rem;
+        text-align: center;
+         padding:5px;
+      }
+
+      #calculationDiv {
+        text-align:center;
+      }
+
+      #buttonDiv {
+        text-align: center;
+      }
+
+      /*--Media Queries*/
+
+      @media screen and (min-width: 768px) {
+          
+      #randomNumberDiv {
+        min-width: 60px;
+        min-height: 60px;
+        line-height: 60px;
+        font-size: 50px;
+      } 
+
+      #answerDiv {
+        min-width: 60px;
+        min-height: 60px;
+        line-height: 60px;
+        border-radius: 50%;
+        font-size: 50px;
+      }
+
+      .symbolDiv {
+        min-width: 60px;
+        min-height: 60px;
+        line-height: 55px;
+        border-radius: 50%;
+        font-size: 50px;
+      }
+
+        #tenDiv {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        border-radius: 50%;
+        font-size: 50px;
+      } 
+
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <h1 id="mainTitle">Number Bonds APP</h1>
+    <div class="boxContainer">
+      <div class="nbBox">1</div>
+      <div class="nbBox">2</div>
+      <div class="nbBox">3</div>
+      <div class="nbBox">4</div>
+      <div class="nbBox">5</div>
+      <div class="nbBox">6</div>
+      <div class="nbBox">7</div>
+      <div class="nbBox">8</div>
+      <div class="nbBox">9</div>
+      <div class="nbBox">10</div>
+    </div>
+    <br />
+
+    <div id="calculationDiv">
+      <p id="randomNumberDiv">?</p>
+      <p class="symbolDiv">+</p>
+      <p id="answerDiv">?</p>
+      <p class="symbolDiv">=</p>
+      <p id="tenDiv">10</p>
+    </div>
+
+
+    <p id="buttonDiv">
+      <button onclick="getNewNumber()">Get New Number</button>
+    </p>
+    <p id="buttonDiv"><button onclick="revealAnswer()">Show Answer</button></p>
+    <p>
+      <script src="lib/script.js"></script>
+      <script>
+        var answer = 0;
+        var randomNumber;
+
+        function getNewNumber() {
+          document.getElementById("answerDiv").innerText = "?";
+
+          for (
+            var i = 0;
+            i < document.getElementsByClassName("nbBox").length;
+            i++
+          ) {
+            document.getElementsByClassName("nbBox")[i].style.backgroundColor =
+              "white";
+          }
+
+          randomNumber = Math.floor(Math.random() * 11);
+          document.getElementById("randomNumberDiv").innerText = randomNumber;
+          //console.log(randomNumber);
+
+          for (var i = 0; i < randomNumber; i++) {
+            document.getElementsByClassName("nbBox")[i].style.backgroundColor =
+              "orange";
+          }
+        }
+
+        function revealAnswer() {
+       if (randomNumber != null) {
+
+          var answer = 10 - randomNumber;
+          document.getElementById("answerDiv").innerText = answer;
+
+          for (var i = 10 - answer; i < 10; i++) {
+            document.getElementsByClassName("nbBox")[i].style.backgroundColor =
+              "#71e816";
+          }
+        } else {
+            alert("You must first click the Get New Number Button.");
+          }
+        }
+      </script>
+    </p>
+  </body>
+</html>
